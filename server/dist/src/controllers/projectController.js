@@ -16,7 +16,6 @@ const getProjects = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const project = yield prisma.project.findMany();
     }
-    catch (_a) {
-    }
+    catch (_a) { }
 });
 exports.getProjects = getProjects;
