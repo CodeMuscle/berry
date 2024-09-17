@@ -4,7 +4,10 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import bodyParser from "body-parser";
+
 // Route Imports
+import projectRoutes from "./routes/projectRoutes";
+import taskRoutes from "./routes/taskRoutes";
 
 // Configurations
 dotenv.config();
@@ -17,10 +20,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-// ROUTE
+// ROUTES
 app.get("/", (req, res) => {
   res.send("This is home route");
 });
+
+app.use("/projects", projectRoutes);
+app.use("/tasks", taskRoutes);
 
 // EXPRESS SERVER
 const port = process.env.PORT || 3000;
