@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import berry from "../../../../public/berry.png";
+import berry from "../../../public/berry.png";
+
 import {
   AlertCircle,
   AlertOctagon,
@@ -25,11 +26,13 @@ import { usePathname } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import Link from "next/link";
 import { setIsSidebarCollapsed } from "@/state";
+import { useGetProjectsQuery } from "@/state/api";
 
 const Sidebar = () => {
   const [showProjects, setShowProjects] = useState<boolean>(true);
   const [showPriority, setShowPriority] = useState<boolean>(true);
 
+  const { data: projects } = useGetProjectsQuery();
   const dispatch = useAppDispatch();
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed,
@@ -100,6 +103,15 @@ const Sidebar = () => {
           )}
         </button>
         {/* Projects List */}
+        {showProjects &&
+          projects?.map((project) => (
+            <SidebarLink
+              key={project.id}
+              icon={Briefcase}
+              label={project.name}
+              href={`/projects/${project.id}`}
+            />
+          ))}
 
         {/* Priorities Links */}
         <button
@@ -115,7 +127,7 @@ const Sidebar = () => {
         </button>
         {/* Priorities List */}
         {showPriority && (
-          <>
+          <div>
             <SidebarLink
               icon={AlertCircle}
               label="Urgent"
@@ -137,7 +149,7 @@ const Sidebar = () => {
               label="Backlog"
               href="/priority/backlog"
             />
-          </>
+          </div>
         )}
       </div>
     </div>
