@@ -117,13 +117,27 @@ const TaskColumn = ({
         </div>
       </div>
 
-      {/* {tasks
+      {tasks
         .filter((task) => task.status === status)
         .map((task) => (
           <Task key={task.id} task={task} />
-        ))} */}
+        ))}
     </div>
   );
 };
+
+type TaskProps = { 
+  task: TaskType;
+}
+
+const Task = ({ task }: TaskProps) => {
+  return( 
+      <DndProvider backend={HTML5Backend}>
+        <div className="">
+
+        </div>
+      </DndProvider>
+  )
+}
 
 export default BoardView;
