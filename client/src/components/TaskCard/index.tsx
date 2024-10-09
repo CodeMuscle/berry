@@ -11,7 +11,7 @@ const TaskCard = ({ task }: Props) => {
     <div className="mb-3 rounded bg-white p-4 shadow dark:bg-dark-secondary dark:text-white">
       {task.attachments && task.attachments.length > 0 && (
         <div className="">
-          <strong>Attachments:</strong>
+          <strong className="text-lg">Attachments:</strong>
           <div className="flex flex-wrap">
             {task.attachments && task.attachments.length > 0 && (
               <Image
@@ -19,7 +19,7 @@ const TaskCard = ({ task }: Props) => {
                 alt={task.attachments[0].fileName}
                 width={400}
                 height={200}
-                className="rounded-md"
+                className="rounded-md my-4"
               />
             )}
           </div>
