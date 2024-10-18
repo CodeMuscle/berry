@@ -1,3 +1,4 @@
+import { dataGridClassNames, dataGridSxStyles } from "@/app/lib/utils";
 import { useAppSelector } from "@/app/redux";
 import Header from "@/components/Header";
 import { useGetTasksQuery } from "@/state/api";
@@ -84,7 +85,12 @@ const TableView = ({ id, setIsModalNewTaskOpen }: Props) => {
       <div className="pt-5">
         <Header name="Table" isSmallText />
       </div>
-      <DataGrid rows={tasks || []} columns={columns} />
+      <DataGrid
+        rows={tasks || []}
+        columns={columns}
+        className={dataGridClassNames}
+        sx={dataGridSxStyles}
+      />
     </div>
   );
 };
